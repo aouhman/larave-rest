@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class MeetingController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('name');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,17 +20,25 @@ class MeetingController extends Controller
      */
     public function index()
     {
-        return "It works!";
-    }
+        $meeting = [
+            'title' => 'Title',
+            'description' => 'Description',
+            'time' => 'Time',
+            'user_id' => 'User Id',
+            'view_meeting' => [
+                'href' => 'api/v1/meeting/1',
+                'method' => 'GET'
+            ]
+        ];
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return "It works!";
+        $response = [
+            'msg' => 'List of all Meetings',
+            'meetings' => [
+                $meeting,
+                $meeting
+            ]
+        ];
+        return response()->json($response, 200);
     }
 
     /**
@@ -40,7 +53,24 @@ class MeetingController extends Controller
         $description = $request->input('description');
         $time = $request->input('time');
         $user_id = $request->input('user_id');
-        return "It works!";
+
+        $meeting = [
+            'title' => $title,
+            'description' => $description,
+            'time' => $time,
+            'user_id' => $user_id,
+            'view_meeting' => [
+                'href' => 'api/v1/meeting/1',
+                'method' => 'GET'
+            ]
+        ];
+
+        $response = [
+            'msg' => 'Meeting created',
+            'meeting' => $meeting
+        ];
+
+        return response()->json($response, 201);
     }
 
     /**
@@ -51,18 +81,22 @@ class MeetingController extends Controller
      */
     public function show($id)
     {
-        return "It works!";
-    }
+        $meeting = [
+            'title' => 'Title',
+            'description' => 'Description',
+            'time' => 'Time',
+            'user_id' => 'User Id',
+            'view_meetings' => [
+                'href' => 'api/v1/meeting',
+                'method' => 'GET'
+            ]
+        ];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return "It works!";
+        $response = [
+            'msg' => 'Meeting information',
+            'meeting' => $meeting
+        ];
+        return response()->json($response, 200);
     }
 
     /**
@@ -78,7 +112,23 @@ class MeetingController extends Controller
         $description = $request->input('description');
         $time = $request->input('time');
         $user_id = $request->input('user_id');
-        return "It works!";
+        $meeting = [
+            'title' => $title,
+            'description' => $description,
+            'time' => $time,
+            'user_id' => $user_id,
+            'view_meeting' => [
+                'href' => 'api/v1/meeting/1',
+                'method' => 'GET'
+            ]
+        ];
+
+        $response = [
+            'msg' => 'Meeting updated',
+            'meeting' => $meeting
+        ];
+
+        return response()->json($response, 200);
     }
 
     /**
@@ -89,6 +139,15 @@ class MeetingController extends Controller
      */
     public function destroy($id)
     {
-        return "It works!";
+        $response = [
+            'msg' => 'Meeting deleted',
+            'create' => [
+                'href' => 'api/v1/meeting',
+                'method' => 'POST',
+                'params' => 'title, description, time'
+            ]
+        ];
+
+        return response()->json($response, 200);
     }
 }
