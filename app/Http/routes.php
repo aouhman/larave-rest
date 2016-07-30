@@ -4,9 +4,9 @@ Route::group(['prefix' => 'api/v1'], function () {
         'except' => ['edit', 'create']
     ]);
 
-//    Route::resource('meeting', 'RegistrationController', [
-//        'only' => ['store', 'destroy']
-//    ]);
+    Route::resource('meeting/registration', 'RegistrationController', [
+        'only' => ['store', 'destroy']
+    ]);
     Route::post('user', [
         'uses' => 'AuthController@store'
     ]);
