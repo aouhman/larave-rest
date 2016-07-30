@@ -8,6 +8,6 @@ class Meeting extends Model
 {
     protected $fillable = ['time','title','description'];
     public function  users(){
-        return $this->belongsTo('App\User');
+        return $this->BelongsToMany ('App\User');
     }
 }
